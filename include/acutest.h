@@ -1234,7 +1234,6 @@ acutest_run_(const struct acutest_test_* test, int index, int master_index)
     enum acutest_state_ state = ACUTEST_STATE_FAILED;
     acutest_timer_type_ start, end;
 
-    acutest_current_test_ = test;
     acutest_test_already_logged_ = 0;
     acutest_timer_get_time_(&start);
 
@@ -1328,8 +1327,6 @@ acutest_run_(const struct acutest_test_* test, int index, int master_index)
         state = acutest_do_run_(test, index);
     }
     acutest_timer_get_time_(&end);
-
-    acutest_current_test_ = NULL;
 
     acutest_test_data_[master_index].state = state;
     acutest_test_data_[master_index].duration = acutest_timer_diff_(start, end);
